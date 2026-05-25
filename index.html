@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="thEuJ501Bd0f5kFniQMav3dCjVTREuez9OoV3wizJDs">
+  <meta name="robots" content="index, follow">
+  <title>গল্পের ক্যানভাস | Bengali Books Online</title>
+  <meta name="description" content="বাংলা বই, অফার, রিভিউ আর অনলাইন অর্ডারের জন্য গল্পের ক্যানভাসে স্বাগতম।">
+  <meta name="keywords" content="বাংলা বই, Bengali books, online book store, golper canvas, Senorita, Chandragrasi, Crossfire, Patajharar Morsume">
+  <meta name="author" content="Golper Canvas">
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+    }
+    a { color: inherit; }
+
+    header {
+      position: relative;
+      text-align: center;
+      padding: 64px 20px 44px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.78)),
+        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      opacity: 0.9;
+    }
+
+    header .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 52px);
+      letter-spacing: .5px;
+    }
+
+    header p {
+      margin: 12px 0 0;
+      color: #ddd;
+      font-size: 18px;
+    }
+
+    .search-wrap {
+      padding: 18px 20px 6px;
+      background: #0f0f0f;
+      position: sticky;
+      top: 0;
+      z-index: 8;
+    }
+
+    .search-box {
+      width: min(720px, 100%);
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 999px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 16px;
+      background: transparent;
+    }
+
+    .section {
+      padding: 18px 20px 40px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      margin: 8px 0 18px;
+      font-size: 20px;
+      color: #f4b942;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.24);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 34px rgba(0,0,0,.35);
+    }
+
+    .card-cover {
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #e53935;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 10px;
+      border-radius: 8px;
+      z-index: 2;
+    }
+
+    .card img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      display: block;
+      background: #111;
+    }
+
+    .content {
+      padding: 18px;
+    }
+
+    .content h2 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .old {
+      color: #7f7f7f;
+      text-decoration: line-through;
+      font-size: 18px;
+    }
+
+    .new {
+      color: #f4b942;
+      font-weight: 700;
+      font-size: 34px;
+    }
+
+    .stock {
+      color: #ff5a5a;
+      margin-top: 14px;
+      font-size: 16px;
+    }
+
+    .buy-btn {
+      display: block;
+      margin-top: 18px;
+      background: #f4b942;
+      color: #111;
+      text-align: center;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    .product-page {
+      display: none;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 22px 20px 48px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #f4b942;
+      cursor: pointer;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .product-images {
+      display: grid;
+      gap: 14px;
+    }
+
+    .product-images img {
+      width: 100%;
+      border-radius: 18px;
+      display: block;
+      max-height: 480px;
+      object-fit: cover;
+      background: #151515;
+    }
+
+    .product-info {
+      background: #171717;
+      border-radius: 20px;
+      padding: 22px;
+    }
+
+    .product-info h2 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 42px);
+    }
+
+    .product-desc {
+      color: #ddd;
+      line-height: 1.7;
+      font-size: 17px;
+      margin: 16px 0 0;
+    }
+
+    .meta {
+      margin-top: 16px;
+      color: #bfbfbf;
+      font-size: 15px;
+    }
+
+    .empty-note {
+      text-align: center;
+      color: #aaa;
+      padding: 28px 12px 8px;
+      display: none;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+      padding: 10px 20px 34px;
+    }
+
+    @media (max-width: 800px) {
+      .product-layout {
+        grid-template-columns: 1fr;
+      }
+      .card img {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="home-page">
+    <header>
+      <div class="hero-content">
+        <h1>গল্পের ক্যানভাস</h1>
+        <p>যেখানে শব্দই ছবি আঁকে 📖</p>
+      </div>
+    </header>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="বই খুঁজুন..." onkeyup="searchBooks()">
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-title">Featured Books</div>
+
+      <div class="grid" id="bookGrid">
+        <div class="card" data-title="সেনোরিটা senorita" onclick="showPage('senorita-page')">
+          <div class="card-cover">
+            <div class="badge">25% OFF</div>
+            <img src="senorita-front.jpg" alt="Senorita Cover">
+          </div>
+          <div class="content">
+            <h2>সেনোরিটা</h2>
+            <div class="price-row">
+              <span class="old">₹200</span>
+              <span class="new">₹150</span>
+            </div>
+            <div class="stock">🔥 Only 1 left</div>
+            <a class="buy-btn" href="https://wa.me/919134589683?text=Hi%20I%20want%20to%20buy%20Senorita" onclick="event.stopPropagation()">Buy Now</a>
+          </div>
+        </div>
+
+        <div class="card" data-title="চন্দ্রগ্রাসী chandragrasi" onclick="showPage('chandragrasi-page')">
+          <div class="card-cover">
+            <div class="badge">27% OFF</div>
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80" alt="Chandragrasi">
+          </div>
+          <div class="content">
+            <h2>চন্দ্রগ্রাসী</h2>
+            <div class="price-row">
+              <span class="old">₹380</span>
+              <span class="new">₹277</span>
+            </div>
+            <div class="stock">🔥 Only 4 left</div>
+            <a class="buy-btn" href="https://wa.me/919134589683?text=Hi%20I%20want%20to%20buy%20Chandragrasi" onclick="event.stopPropagation()">Buy Now</a>
+          </div>
+        </div>
+
+        <div class="card" data-title="ক্রসফায়ার crossfire" onclick="showPage('crossfire-page')">
+          <div class="card-cover">
+            <div class="badge">23% OFF</div>
+            <img src="https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=1200&q=80" alt="Crossfire">
+          </div>
+          <div class="content">
+            <h2>Crossfire</h2>
+            <div class="price-row">
+              <span class="old">₹325</span>
+              <span class="new">₹250</span>
+            </div>
+            <div class="stock">🔥 Only 2 left</div>
+            <a class="buy-btn" href="https://wa.me/919134589683?text=Hi%20I%20want%20to%20buy%20Crossfire" onclick="event.stopPropagation()">Buy Now</a>
+          </div>
+        </div>
+
+        <div class="card" data-title="পাতাঝরার মরশুমে patajharar morsume" onclick="showPage('patajharar-page')">
+          <div class="card-cover">
+            <div class="badge">36% OFF</div>
+            <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1200&q=80" alt="Patajharar Morsume">
+          </div>
+          <div class="content">
+            <h2>পাতাঝরার মরশুমে</h2>
+            <div class="price-row">
+              <span class="old">₹450</span>
+              <span class="new">₹290</span>
+            </div>
+            <div class="stock">🔥 Only 1 left</div>
+            <a class="buy-btn" href="https://wa.me/919134589683?text=Hi%20I%20want%20to%20buy%20Patajharar%20Morsume" onclick="event.stopPropagation()">Buy Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty-note" id="emptyNote">এই নামে কোনো বই পাওয়া যায়নি।</div>
+    </section>
+
+    <div class="footer-note">© গল্পের ক্যানভাস</div>
+  </div>
+
+  <div id="senorita-page" class="product-page">
+    <a class="back-btn" onclick="goHome()">⬅ Back</a>
+    <div class="product-layout">
+      <div class="product-images">
+        <img src="senorita-front.jpg" alt="Senorita Front">
+        <img src="senorita-back.jpg" alt="Senorita Back">
+      </div>
+      <div class="product-info">
+        <h2>সেনোরিটা</h2>
+        <div class="price-row">
+          <span class="old">₹200</span>
+          <span class="new">₹150</span>
+        </div>
+        <div class="stock">🔥 Only 1 left</div>
+        <p class="product-desc">
+          একটা গভীর প্রেমের গল্প, যেখানে অনুভূতি আর বাস্তবতার মিশেল রয়েছে।
+          সম্পর্ক, আকর্ষণ, টানাপোড়েন আর আবেগের স্তরগুলো খুব সুন্দরভাবে ফুটে উঠেছে।
+          যদি romantic yet intense vibe-এর কিছু পড়তে চাও, এই বইটা ভালো লাগতে পারে।
+        </p>
+        <div class="meta">Genre: Romance</div>
+        <a class="buy-btn" href="https://wa.me/919134589683?text=Hi%20I%20want%20to%20buy%20Senorita">Buy Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="chandragrasi-page" class="product-page">
+    <a class="back-btn" onclick="goHome()">⬅ Back</a>
+    <div class="product-layout">
+      <div class="product-images">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80" alt="Chandragrasi Cover">
+      </div>
+      <div class="product-info">
+        <h2>চন্দ্রগ্রাসী</h2>
+        <div class="price-row">
+          <span class="old">₹380</span>
+          <span class="new">₹277</span>
+        </div>
+        <div class="stock">🔥 Only 4 left</div>
+        <p class="product-desc">
+          বাংলায় লেখা প্রথম মৌলিক ভ্যাম্পায়ার উপন্যাস। রহস্য, অন্ধকার, অতিপ্রাকৃত আবহ
+          আর intense storytelling পছন্দ হলে এই বইটা তোমার collection-এ থাকতেই পারে।
+        </p>
+        <div class="meta">Genre: Dark Fantasy / Vampire Fiction</div>
+        <a class="buy-btn" href="https://wa.me/919134589683?text=Hi%20I%20want%20to%20buy%20Chandragrasi">Buy Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="crossfire-page" class="product-page">
+    <a class="back-btn" onclick="goHome()">⬅ Back</a>
+    <div class="product-layout">
+      <div class="product-images">
+        <img src="https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=1200&q=80" alt="Crossfire Cover">
+      </div>
+      <div class="product-info">
+        <h2>Crossfire</h2>
+        <div class="price-row">
+          <span class="old">₹325</span>
+          <span class="new">₹250</span>
+        </div>
+        <div class="stock">🔥 Only 2 left</div>
+        <p class="product-desc">
+          একটা রাজনৈতিক থ্রিলার, যেখানে উত্তেজনা, আবেগ, রহস্য এবং বিপদ একই সুতোয় গাঁথা।
+          টানটান plot আর suspenseful flow পছন্দ করলে এই বইটা বেশ gripping লাগবে।
+        </p>
+        <div class="meta">Genre: Political Thriller</div>
+        <a class="buy-btn" href="https://wa.me/919134589683?text=Hi%20I%20want%20to%20buy%20Crossfire">Buy Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="patajharar-page" class="product-page">
+    <a class="back-btn" onclick="goHome()">⬅ Back</a>
+    <div class="product-layout">
+      <div class="product-images">
+        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1200&q=80" alt="Patajharar Morsume Cover">
+      </div>
+      <div class="product-info">
+        <h2>পাতাঝরার মরশুমে</h2>
+        <div class="price-row">
+          <span class="old">₹450</span>
+          <span class="new">₹290</span>
+        </div>
+        <div class="stock">🔥 Only 1 left</div>
+        <p class="product-desc">
+          প্রেমের উপন্যাস। নরম, আবেগঘন, স্মৃতিমাখা অনুভূতি আর সম্পর্কের সূক্ষ্ম স্তরগুলো
+          যদি তোমার ভালো লাগে, তাহলে এই বইটা তোমার জন্য সুন্দর একটা pick হতে পারে।
+        </p>
+        <div class="meta">Genre: Romance</div>
+        <a class="buy-btn" href="https://wa.me/919134589683?text=Hi%20I%20want%20to%20buy%20Patajharar%20Morsume">Buy Now</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      document.getElementById('home-page').style.display = 'none';
+      document.querySelectorAll('.product-page').forEach(page => {
+        page.style.display = 'none';
+      });
+      document.getElementById(pageId).style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goHome() {
+      document.querySelectorAll('.product-page').forEach(page => {
+        page.style.display = 'none';
+      });
+      document.getElementById('home-page').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function searchBooks() {
+      const input = document.getElementById('searchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#bookGrid .card');
+      const emptyNote = document.getElementById('emptyNote');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        if (title.includes(input)) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      emptyNote.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  </script>
+
+</body>
+</html>
+```

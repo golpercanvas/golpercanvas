@@ -1,0 +1,6 @@
+robots.txt
+# robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://golpercanvas.netlify.app/sitemap.xml
